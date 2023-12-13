@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+	<head>
+		<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'>
+		<meta name='apple-mobile-web-app-capable' content='yes'>
+		<meta name='apple-mobile-web-app-status-bar-style' content='black'>
+		<meta name='format-detection' content='telephone=no'>
+		<meta charset="utf-8">
+		<title>胡同学</title>
+		<link href="css/style.css" rel="stylesheet" type="text/css">
+		<style type='text/css'>img{width:100%;}</style>
+		<table style="width:100%;font-size:1.1em">
+	</head>
+	<body>
+		
+			<div class="mb-box" id="mb-box" style="margin-top: 110px;">
+			<div class="bb">
+				<h2>胡同学的警告</h2>
+				<div class="bb_text">
+					<div id="code" class="code">
+						警告：本网站包含成人内容，仅适合年满18岁或以上的观众。未满18岁的人员请立即离开本网站。
+
+						我们坚决遵守相关法律法规，并对保护未成年人免受不适宜内容的影响负有责任。未满18岁的儿童和青少年在访问互联网时应始终有监护人的陪同和指导。
+
+						如果您是父母或监护人，请采取适当的措施来确保您的孩子不接触到适龄观众之外的内容。您可以使用家长控制软件、过滤器等工具来限制和监管孩子在互联网上的活动。请时刻关注、教育并与孩子保持沟通，以确保他们能够正确识别和处理不适宜的内容。
+
+						我们强烈呼吁所有用户根据当地法律法规行事，并理性使用互联网资源。任何滥用或违反法律的行为都将承担相应的法律责任。
+
+						如果您需要了解更多关于互联网安全和保护未成年人的信息，请参考相关机构和组织发布的指南和建议。
+					</div>
+				</div>
+				<p class="bb_myname">胡同学<br />
+				</p>
+			</div>
+		</div>
+		
+		
+		<audio autoplay preload="auto"  loop id="audio">
+			<source src="music/合成多首_缩混.mp3" type="audio/mpeg"/>
+			您的浏览器不支持音频播放。
+		</audio>
+		
+		<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			
+			//div中文字输出的，自个研究
+			Element.prototype.typewriter = function(a) {
+				var d = this,
+					c = d.innerHTML,
+					b = 0;
+				d.innerHTML = "";
+				var e = setInterval(function() {
+					var f = c.substr(b, 1);
+					if (f == "<") {
+						b = c.indexOf(">", b) + 1
+					} else {
+						b++
+					}
+					d.innerHTML = c.substring(0, b) + (b & 1 ? "_" : "");
+					if (b >= c.length) {
+						clearInterval(e)
+					}
+					$(".bb_text").scrollTop(999);
+				}, 150)
+				return this;
+			}
+			document.getElementById("code").typewriter();
+			
+			
+			
+			//因为兼容性原因，手机默认关闭自动播放，这是让手机自动播放得，自个研究
+			$(document).one('WeixinJSBridgeReady', function () {
+			    var audio = document.getElementById("audio");
+			    audio.play(); //执行一次
+			    // audio.setAttribute('src', 'music/musi.mp3'); // 替换src
+			    audio.load();
+			})
+			// 监听摇晃事件简化版
+			window.addEventListener('devicemotion', function () {
+			    document.getElementById("audio").play(); // 成功播放
+			}, false);
+			
+			
+		</script>
+	</body>
+</html>
